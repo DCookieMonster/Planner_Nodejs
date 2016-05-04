@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+<script>
+    (function() {
+        "use strict";
+
+        var app = angular.module("myApp", ["ngTable"]);
+        var result=  <%-JSON.stringify(results)%>;
+        app.controller("demoController", demoController);
+
+        function demoController(NgTableParams) {
+            var self = this;
+            self.tableParams = new NgTableParams({}, {
+                dataset:result
+            });
+        }
+    })();
+</script>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="container">
+<h2>Database Results</h2>
+
+    <div ng-app="myApp">
+        <div ng-controller="demoController as demo">
+            <h2 class="page-header">Loading data - managed array</h2>
+            <div class="bs-callout bs-callout-info">
+                <h4>Overview</h4>
+                <p>When you have the <em>entire</em> dataset available in-memory you can hand this to <code>NgTableParams</code> to manage the filtering, sorting and paging of that array</p>
+            </div>
+            <table ng-table="demo.tableParams" class="table table-condensed table-bordered table-striped">
+                <tr ng-repeat="row in $data">
+                    <td data-title="'userId'" filter="{userId: 'text'}" sortable="'userId'">{{row.userId}}</td>
+                    <td data-title="'Age'" filter="{age: 'number'}" sortable="'age'">{{row.age}}</td>
+                    <td data-title="'Gender'" filter="{gender: 'text'}" sortable="'gender'">{{row.gender}}</td>
+                    <td data-title="'Duration Instruction'" filter="{DurationInstruction: 'number'}" sortable="'DurationInstruction'">{{row.DurationInstruction}}</td>
+                    <td data-title="'Number Of Quizs'" filter="{NumberOfTimeInQuiz: 'number'}" sortable="'NumberOfTimeInQuiz'">{{row.NumberOfTimeInQuiz}}</td>
+                    <td data-title="'Duration Quiz'" filter="{DurationQuiz: 'number'}" sortable="'DurationQuiz'">{{row.DurationQuiz}}</td>
+                    <td data-title="'Duration Training'" filter="{DurationTraining: 'number'}" sortable="'DurationTraining'">{{row.DurationTraining}}</td>
+                    <td data-title="'Score'" filter="{Score: 'number'}" sortable="'Score'">{{row.Score}}</td>
+                    <td data-title="'Win'" filter="{Win: 'text'}" sortable="'Win'">{{row.Win}}</td>
+                    <td data-title="'Grid Size'" filter="{GridSize: 'text'}" sortable="'GridSize'">{{row.GridSize}}</td>
+                    <td data-title="'Start Score'" filter="{startScore: 'number'}" sortable="'startScore'">{{row.startScore}}</td>
+                    <td data-title="'Middle Score'" filter="{middleScore: 'number'}" sortable="'middleScore'">{{row.middleScore}}</td>
+                    <td data-title="'End Score'" filter="{endScore: 'number'}" sortable="'endScore'">{{row.endScore}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
