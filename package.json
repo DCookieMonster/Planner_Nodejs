@@ -17,11 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/DCookieMonster/Planner_Nodejs.git"
   },
   "keywords": [
     "node",
-    "heroku",
+    "planner",
+    "experiment",
     "express"
   ],
   "license": "MIT"
