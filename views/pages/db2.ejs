@@ -22,18 +22,14 @@
 
 <body>
 
-<% include ../partials/nav.ejs %>
+<!--<% include ../partials/nav.ejs %>-->
 
 <div class="container">
 <h2>Database Results</h2>
 
     <div ng-app="myApp">
         <div ng-controller="demoController as demo">
-            <h2 class="page-header">Loading data - managed array</h2>
-            <div class="bs-callout bs-callout-info">
-                <h4>Overview</h4>
-                <p>When you have the <em>entire</em> dataset available in-memory you can hand this to <code>NgTableParams</code> to manage the filtering, sorting and paging of that array</p>
-            </div>
+
             <table ng-table="demo.tableParams" class="table table-condensed table-bordered table-striped">
                 <tr ng-repeat="row in $data">
                     <td data-title="'userId'" filter="{userId: 'text'}" sortable="'userId'">{{row.userId}}</td>
