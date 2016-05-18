@@ -156,6 +156,7 @@
                 math_data.push(data[i].key);
             }
         }
+
         $("#"+id+"Mean")[0].innerHTML=math.round(math.mean(math_data),3);
         $("#"+id+"Std")[0].innerHTML=math.round(math.std(math_data),3);
 
