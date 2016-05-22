@@ -48,9 +48,9 @@
                     <td data-title="'Score'" filter="{Score: 'number'}" sortable="'Score'">{{row.Score}}</td>
                     <td data-title="'Win'" filter="{Win: 'text'}" sortable="'Win'">{{row.Win}}</td>
                     <td data-title="'Grid Size'" filter="{GridSize: 'text'}" sortable="'GridSize'">{{row.GridSize}}</td>
-                    <td data-title="'Start Score'" filter="{startScore: 'number'}" sortable="'startScore'">{{row.startScore}}</td>
-                    <td data-title="'Middle Score'" filter="{middleScore: 'number'}" sortable="'middleScore'">{{row.middleScore}}</td>
-                    <td data-title="'End Score'" filter="{endScore: 'number'}" sortable="'endScore'">{{row.endScore}}</td>
+                    <td data-title="'Start Cost'" filter="{startScore: 'number'}" sortable="'startScore'">{{row.startScore}}</td>
+                    <td data-title="'Middle Cost'" filter="{middleScore: 'number'}" sortable="'middleScore'">{{row.middleScore}}</td>
+                    <td data-title="'End Cost'" filter="{endScore: 'number'}" sortable="'endScore'">{{row.endScore}}</td>
                 </tr>
             </table>
         </div>
@@ -69,17 +69,22 @@
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <h5 class="text-center">Start Score <small>Mean: <span id="startScoreMean"></span>, Std: <span id="startScoreStd"></span> </small></h5>
+            <h5 class="text-center">Start Cost <small>Mean: <span id="startScoreMean"></span>, Std: <span id="startScoreStd"></span> </small></h5>
+            <h5>Real Cost: <strong>8</strong></h5>
+
             <canvas id="startScoreChart" width="200" height="200"></canvas>
 
         </div>
         <div class="col-lg-4">
-            <h5 class="text-center">Middle Score <small>Mean: <span id="middleScoreMean"></span>, Std: <span id="middleScoreStd"></span> </small></h5>
+            <h5 class="text-center">Middle Cost <small>Mean: <span id="middleScoreMean"></span>, Std: <span id="middleScoreStd"></span> </small></h5>
+            <h5>Real Cost: <strong>8</strong></h5>
+
             <canvas id="middleScoreChart" width="200" height="200"></canvas>
 
         </div>
         <div class="col-lg-4">
-            <h5 class="text-center">End Score <small>Mean: <span id="endScoreMean"></span>, Std: <span id="endScoreStd"></span> </small></h5>
+            <h5 class="text-center">End Cost <small>Mean: <span id="endScoreMean"></span>, Std: <span id="endScoreStd"></span> </small></h5>
+            <h5>Real Cost: <strong>7</strong></h5>
             <canvas id="endScoreChart" width="200" height="200"></canvas>
 
         </div>
