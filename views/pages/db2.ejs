@@ -152,9 +152,10 @@
         var labels=[];
         var arr_data=[];
         var realCostArr=[];
-
         for (i in data){
             realCostArr.push(realCost)
+        }
+        for (i in data){
             labels.push(data[i].key);
             arr_data.push(data[i].values.length);
         }
@@ -308,21 +309,21 @@
                 return d.startScore;
             })
             .entries(result)
-    drawBarGrah("startScore",start_data,"Start")
+    drawBarGrah("startScore",start_data,"Start",8)
 
     var middle_data = d3.nest() //Build a dataset for the pie chart
             .key(function(d) {
                 return d.middleScore;
             })
             .entries(result)
-    drawBarGrah("middleScore",middle_data,"Middle")
+    drawBarGrah("middleScore",middle_data,"Middle",8)
 
     var end_data = d3.nest() //Build a dataset for the pie chart
             .key(function(d) {
                 return d.endScore;
             })
             .entries(result)
-    drawBarGrah("endScore",end_data,"End")
+    drawBarGrah("endScore",end_data,"End",7)
 </script>
 
 </body>
