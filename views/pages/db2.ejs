@@ -35,7 +35,15 @@
 
     <div ng-app="myApp">
         <div ng-controller="demoController as demo">
-
+        <div class="row">
+            <div class="col-lg-10"></div>
+            <div class="col-lg-2">
+                <button onclick="download()" class="btn btn-primary">
+                  Download as CSV
+                </button>
+            </div>
+        </div>
+            <br>
             <table ng-table="demo.tableParams" class="table table-condensed table-bordered table-striped">
                 <tr ng-repeat="row in $data">
                     <td data-title="'userId'" filter="{userId: 'text'}" sortable="'userId'">{{row.userId}}</td>
@@ -330,6 +338,10 @@
             })
             .entries(result)
     drawBarGrah("endScore",end_data,"End",7)
+
+    function download(){
+       window.location="/csv"
+    }
 </script>
 
 </body>

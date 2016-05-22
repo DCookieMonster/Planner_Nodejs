@@ -43,7 +43,7 @@ app.get('/', function(request, response) {
 
 app.get('/csv', function(request, response) {
   var results=[];
-  var csvFile;
+  var csvFile="";
   MongoClient.connect(url, function (err, db) {
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -66,17 +66,16 @@ app.get('/csv', function(request, response) {
           json2csv({ data: results }, function(err, csv) {
             if (err) console.log(err);
             console.log(csv);
-            csvFile=csv;
-          });
+            response.setHeader('Content-disposition', 'attachment; filename=testing.csv');
+            response.set('Content-Type', 'text/csv');
+            response.status(200).send(csv);          });
         }
         //Close connection
         db.close();
       });
     }
   });
-  response.setHeader('Content-disposition', 'attachment; filename=testing.csv');
-  response.set('Content-Type', 'text/csv');
-  response.status(200).send(csvFile);
+
 });
 
 
