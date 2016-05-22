@@ -6,7 +6,7 @@ var request = require("request");
 var bodyParser = require('body-parser');
 
 //app.use(express.bodyParser());
-
+var json2csv = require('json2csv');
 
 
 //lets require/import the mongodb native drivers.
@@ -40,6 +40,45 @@ app.use(function(req, res, next) {
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
+
+app.get('/csv', function(request, response) {
+  var results=[];
+  var csvFile;
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+
+      // Get the documents collection
+      var collection = db.collection('logger');
+
+
+      // Insert some users
+      collection.find({}).toArray(function (err, result) {
+        if (err) {
+          console.log(err);
+        } else {
+          //console.log('Inserted %d documents into the "planner" collection. The documents inserted with "_id" are:', result.length, result);
+          results=result;
+          db.close();
+          json2csv({ data: results }, function(err, csv) {
+            if (err) console.log(err);
+            console.log(csv);
+            csvFile=csv;
+          });
+        }
+        //Close connection
+        db.close();
+      });
+    }
+  });
+  response.setHeader('Content-disposition', 'attachment; filename=testing.csv');
+  response.set('Content-Type', 'text/csv');
+  response.status(200).send(csvFile);
+});
+
 
 
 app.get('/d', function(request, response) {
