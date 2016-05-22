@@ -43,7 +43,6 @@
                 </button>
             </div>
         </div>
-            <br>
             <table ng-table="demo.tableParams" class="table table-condensed table-bordered table-striped">
                 <tr ng-repeat="row in $data">
                     <td data-title="'userId'" filter="{userId: 'text'}" sortable="'userId'">{{row.userId}}</td>
@@ -159,10 +158,7 @@
         var ctx = document.getElementById(id+"Chart");
         var labels=[];
         var arr_data=[];
-        var realCostArr=[];
-        for (i in data){
-            realCostArr.push(realCost)
-        }
+
         for (i in data){
             labels.push(data[i].key);
             arr_data.push(data[i].values.length);
@@ -188,21 +184,7 @@
                     hoverBackgroundColor: "rgba(255,99,132,0.4)",
                     hoverBorderColor: "rgba(255,99,132,1)",
                     data: arr_data,
-                    yAxisID: 'y-axis-1'
 
-                },
-                {
-                    label: "Real Cost",
-                    type:'line',
-                    data: realCostArr,
-                    fill: false,
-                    borderColor: '#EC932F',
-                    backgroundColor: '#EC932F',
-                    pointBorderColor: '#EC932F',
-                    pointBackgroundColor: '#EC932F',
-                    pointHoverBackgroundColor: '#EC932F',
-                    pointHoverBorderColor: '#EC932F',
-                    yAxisID: 'y-axis-2'
                 }
             ]
         };
@@ -212,51 +194,16 @@
             data: bar_data,
             options: {
                 responsive: true,
-                elements: {
-                    line: {
-                        fill: false
-                    } },
-
                 scales: {
-                    xAxes: [{
-                        display: true,
-                        gridLines: {
-                            display: false
-                        },
-                        labels: {
-                            show: true,
-                        }
-                    }],
                     yAxes: [{
-                        type: "linear",
-                        display: true,
-                        position: "left",
-                        id: "y-axis-1",
                         ticks: {
                             beginAtZero:true
-                        },
-                        gridLines:{
-                            display: false
-                        },
-                        labels: {
-                            show:true,
-
-                        }
-                    }, {
-                        type: "linear",
-                        display: true,
-                        position: "right",
-                        id: "y-axis-2",
-                        gridLines:{
-                            display: false
-                        },
-                        labels: {
-                            show:true,
-
                         }
                     }]
                 }
-            }
+
+                }
+
 
         });
     }
