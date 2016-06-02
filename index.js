@@ -17,6 +17,7 @@ var MongoClient = mongodb.MongoClient;
 
 // Connection URL. This is where your mongodb server is running.
 var url = 'mongodb://localhost:27017/planner';
+//var url = 'mongodb:///q2a.ise.bgu.ac.il:27017/planner';
 
 app.set('port', (process.env.PORT || 5000));
 
