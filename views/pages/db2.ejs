@@ -224,7 +224,6 @@
     function filterDuration(value){
 
         rangePrimary.value=value;
-        value =value*1000;
         result =  <%- JSON.stringify(results) %>;
         var newResult=[];
         for (res in result){
@@ -244,7 +243,7 @@
         var newResult=[];
         for (res in result){
             if (parseInt(result[res].endScore) >=value && parseInt(result[res].startScore) >=value && parseInt(result[res].middleScore)>=value ) {
-                if (parseInt(result[res].endDuration) >= rangePrimary.value*1000 && parseInt(result[res].startDuration) >= rangePrimary.value*1000 && parseInt(result[res].middleDuration) >= rangePrimary.value*1000) {
+                if (parseInt(result[res].endDuration) >= rangePrimary.value && parseInt(result[res].startDuration) >= rangePrimary.value && parseInt(result[res].middleDuration) >= rangePrimary.value) {
 
                     newResult.push(result[res]);
                 }
