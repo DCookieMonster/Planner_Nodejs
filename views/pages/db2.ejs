@@ -158,15 +158,13 @@
         var arr_data=[];
 
         for (i in data){
-            if (data[i].key=="0")
-                continue;
+
             labels.push(data[i].key);
             arr_data.push(data[i].values.length);
         }
         var math_data=[];
         for (i in data){
-            if (data[i].key=="0")
-                continue;
+
             for (j in data[i].values){
                 math_data.push(data[i].key);
             }
