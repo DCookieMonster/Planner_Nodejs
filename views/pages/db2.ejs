@@ -66,7 +66,9 @@
                     <td data-title="'Score'" filter="{Score: 'number'}" sortable="'Score'">{{row.Score}}</td>
                     <td data-title="'Win'" filter="{Win: 'text'}" sortable="'Win'">{{row.Win}}</td>
                     <!--<td data-title="'Grid Size'" filter="{GridSize: 'text'}" sortable="'GridSize'">{{row.GridSize}}</td>-->
-                    <td data-title="'Start Cost'" filter="{startScore: 'number'}" sortable="'startScore'">{{row.startScore}}</td>
+                    <td data-title="'Calibration Cost'" filter="{calibrationScore: 'number'}" sortable="'calibrationScore'"> {{row.calibrationScore}}</td>
+                    <td data-title="'Calibration Duration'" filter="{calibrationDuration: 'number'}" sortable="'calibrationDuration'">{{row.calibrationDuration}}</td>
+                    <td data-title="'Start Cost'" filter="{startScore: 'number'}" sortable="'startScore'"> {{row.startScore}}</td>
                     <td data-title="'Start Duration'" filter="{startDuration: 'number'}" sortable="'startDuration'">{{row.startDuration}}</td>
                     <td data-title="'Middle Cost'" filter="{middleScore: 'number'}" sortable="'middleScore'">{{row.middleScore}}</td>
                     <td data-title="'Middle Duration'" filter="{middleDuration: 'number'}" sortable="'middleDuration'">{{row.middleDuration}}</td>
@@ -272,6 +274,7 @@
         var data=[];
         for (i in gender_data){
             labels.push(gender_data[i].key);
+
             data.push(gender_data[i].values.length);
         }
         var data = {
