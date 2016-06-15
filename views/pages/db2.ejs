@@ -14,7 +14,11 @@
         var result=  <%-JSON.stringify(results)%>;
 
         app.controller("demoController", demoController);
-
+        app.filter('num', function() {
+            return function(input) {
+                return parseInt(input, 10);
+            };
+        });
 
         function demoController(NgTableParams) {
             var self = this;
@@ -59,22 +63,22 @@
                     <td data-title="'userId'" filter="{userId: 'text'}" sortable="'userId'">{{row.userId}}</td>
                     <td data-title="'Age'" filter="{age: 'number'}" sortable="'age'">{{row.age}}</td>
                     <td data-title="'Gender'" filter="{gender: 'text'}" sortable="'gender'">{{row.gender}}</td>
-                    <td data-title="'Duration Instruction'" filter="{DurationInstruction: 'number'}" sortable="'DurationInstruction'">{{row.DurationInstruction}}</td>
+                    <td data-title="'Duration Instruction'" filter="{DurationInstruction: 'number'}" sortable="'DurationInstruction'">{{row.DurationInstruction |num }}</td>
                     <!--<td data-title="'Number Of Quizs'" filter="{NumberOfTimeInQuiz: 'number'}" sortable="'NumberOfTimeInQuiz'">{{row.NumberOfTimeInQuiz}}</td>-->
                     <!--<td data-title="'Duration Quiz'" filter="{DurationQuiz: 'number'}" sortable="'DurationQuiz'">{{row.DurationQuiz}}</td>-->
-                    <td data-title="'Duration Training'" filter="{DurationTraining: 'number'}" sortable="'DurationTraining'">{{row.DurationTraining}}</td>
+                    <td data-title="'Duration Training'" filter="{DurationTraining: 'number'}" sortable="'DurationTraining'">{{row.DurationTraining| num}}</td>
                     <td data-title="'Score'" filter="{Score: 'number'}" sortable="'Score'">{{row.Score}}</td>
                     <td data-title="'Win'" filter="{Win: 'text'}" sortable="'Win'">{{row.Win}}</td>
                     <!--<td data-title="'Grid Size'" filter="{GridSize: 'text'}" sortable="'GridSize'">{{row.GridSize}}</td>-->
-                    <td data-title="'Calibration Cost'" filter="{calibrationScore: 'number'}" sortable="'calibrationScore'"> {{row.calibrationScore}}</td>
-                    <td data-title="'Calibration Duration'" filter="{calibrationDuration: 'number'}" sortable="'calibrationDuration'">{{row.calibrationDuration}}</td>
-                    <td data-title="'Start Cost'" filter="{startScore: 'number'}" sortable="'startScore'"> {{row.startScore}}</td>
-                    <td data-title="'Start Duration'" filter="{startDuration: 'number'}" sortable="'startDuration'">{{row.startDuration}}</td>
-                    <td data-title="'Middle Cost'" filter="{middleScore: 'number'}" sortable="'middleScore'">{{row.middleScore}}</td>
-                    <td data-title="'Middle Duration'" filter="{middleDuration: 'number'}" sortable="'middleDuration'">{{row.middleDuration}}</td>
+                    <td data-title="'Calibration Cost'" filter="{calibrationScore: 'number'}" sortable="'calibrationScore'"> {{row.calibrationScore | num}}</td>
+                    <td data-title="'Calibration Duration'" filter="{calibrationDuration: 'number'}" sortable="'calibrationDuration'">{{row.calibrationDuration | num}}</td>
+                    <td data-title="'Start Cost'" filter="{startScore: 'number'}" sortable="'startScore'"> {{row.startScore | num}}</td>
+                    <td data-title="'Start Duration'" filter="{startDuration: 'number'}" sortable="'startDuration'">{{row.startDuration |num }}</td>
+                    <td data-title="'Middle Cost'" filter="{middleScore: 'number'}" sortable="'middleScore'">{{row.middleScore | num}}</td>
+                    <td data-title="'Middle Duration'" filter="{middleDuration: 'number'}" sortable="'middleDuration'">{{row.middleDuration | num }}</td>
 
-                    <td data-title="'End Cost'" filter="{endScore: 'number'}" sortable="'endScore'">{{row.endScore}}</td>
-                    <td data-title="'End Duration'" filter="{endDuration: 'number'}" sortable="'endDuration'">{{row.endDuration}}</td>
+                    <td data-title="'End Cost'" filter="{endScore: 'number'}" sortable="'endScore'">{{row.endScore | num }}</td>
+                    <td data-title="'End Duration'" filter="{endDuration: 'number'}" sortable="'endDuration'">{{row.endDuration | num}}</td>
 
                 </tr>
             </table>
