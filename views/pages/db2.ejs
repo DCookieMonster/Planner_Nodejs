@@ -72,6 +72,8 @@
                     <!--<td data-title="'Grid Size'" filter="{GridSize: 'text'}" sortable="'GridSize'">{{row.GridSize}}</td>-->
                     <td data-title="'Calibration Cost'" filter="{calibrationScore: 'number'}" sortable="'calibrationScore'"> {{row.calibrationScore | num}}</td>
                     <td data-title="'Calibration Duration'" filter="{calibrationDuration: 'number'}" sortable="'calibrationDuration'">{{row.calibrationDuration }}</td>
+                    <td data-title="'Calibration2 Cost'" filter="{calibration2Score: 'number'}" sortable="'calibration2Score'"> {{row.calibration2Score | num}}</td>
+                    <td data-title="'Calibration2 Duration'" filter="{calibration2Duration: 'number'}" sortable="'calibration2Duration'">{{row.calibration2Duration }}</td>
                     <td data-title="'Start Cost'" filter="{startScore: 'number'}" sortable="'startScore'"> {{row.startScore | num}}</td>
                     <td data-title="'Start Duration'" filter="{startDuration: 'number'}" sortable="'startDuration'">{{row.startDuration }}</td>
                     <td data-title="'Middle Cost'" filter="{middleScore: 'number'}" sortable="'middleScore'">{{row.middleScore | num}}</td>
@@ -132,7 +134,7 @@
     <div class="row">
         <div class="col-lg-4">
             <h5 class="text-center">Start Cost <small>Mean: <span id="startScoreMean"></span>, Std: <span id="startScoreStd"></span> </small></h5>
-            <h5 class="text-center">Real Cost: <strong>8</strong></h5>
+            <h5 class="text-center">Real Cost: <strong>12</strong></h5>
 
             <canvas id="startScoreChart" width="200" height="200"></canvas>
 
@@ -146,7 +148,7 @@
         </div>
         <div class="col-lg-4">
             <h5 class="text-center">End Cost <small>Mean: <span id="endScoreMean"></span>, Std: <span id="endScoreStd"></span> </small></h5>
-            <h5 class="text-center">Real Cost: <strong>7</strong></h5>
+            <h5 class="text-center">Real Cost: <strong>4</strong></h5>
             <canvas id="endScoreChart" width="200" height="200"></canvas>
 
         </div>
