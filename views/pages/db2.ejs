@@ -70,16 +70,16 @@
                     <td data-title="'Score'" filter="{Score: 'number'}" sortable="'Score'">{{row.Score}}</td>
                     <td data-title="'Win'" filter="{Win: 'text'}" sortable="'Win'">{{row.Win}}</td>
                     <!--<td data-title="'Grid Size'" filter="{GridSize: 'text'}" sortable="'GridSize'">{{row.GridSize}}</td>-->
-                    <td data-title="'Calibration Cost'" filter="{calibrationScore: 'number'}" sortable="'calibrationScore'"> {{row.calibrationScore | num}}</td>
+                    <td data-title="'Calibration Cost'" filter="{calibrationScore: 'number'}" sortable="'calibrationScore'"> {{row.calibrationCost | num}}</td>
                     <td data-title="'Calibration Duration'" filter="{calibrationDuration: 'number'}" sortable="'calibrationDuration'">{{row.calibrationDuration }}</td>
-                    <td data-title="'Calibration2 Cost'" filter="{calibration2Score: 'number'}" sortable="'calibration2Score'"> {{row.calibration2Score | num}}</td>
+                    <td data-title="'Calibration2 Cost'" filter="{calibration2Score: 'number'}" sortable="'calibration2Score'"> {{row.calibration2Cost | num}}</td>
                     <td data-title="'Calibration2 Duration'" filter="{calibration2Duration: 'number'}" sortable="'calibration2Duration'">{{row.calibration2Duration }}</td>
-                    <td data-title="'Start Cost'" filter="{startScore: 'number'}" sortable="'startScore'"> {{row.startScore | num}}</td>
+                    <td data-title="'Start Cost'" filter="{startScore: 'number'}" sortable="'startScore'"> {{row.startCost | num}}</td>
                     <td data-title="'Start Duration'" filter="{startDuration: 'number'}" sortable="'startDuration'">{{row.startDuration }}</td>
-                    <td data-title="'Middle Cost'" filter="{middleScore: 'number'}" sortable="'middleScore'">{{row.middleScore | num}}</td>
+                    <td data-title="'Middle Cost'" filter="{middleScore: 'number'}" sortable="'middleScore'">{{row.middleCost | num}}</td>
                     <td data-title="'Middle Duration'" filter="{middleDuration: 'number'}" sortable="'middleDuration'">{{row.middleDuration  }}</td>
 
-                    <td data-title="'End Cost'" filter="{endScore: 'number'}" sortable="'endScore'">{{row.endScore | num }}</td>
+                    <td data-title="'End Cost'" filter="{endScore: 'number'}" sortable="'endScore'">{{row.endCost | num }}</td>
                     <td data-title="'End Duration'" filter="{endDuration: 'number'}" sortable="'endDuration'">{{row.endDuration }}</td>
 
                 </tr>
@@ -134,21 +134,21 @@
     <div class="row">
         <div class="col-lg-4">
             <h5 class="text-center">Start Cost <small>Mean: <span id="startScoreMean"></span>, Std: <span id="startScoreStd"></span> </small></h5>
-            <h5 class="text-center">Real Cost: <strong>12</strong></h5>
+            <h5 class="text-center">Real Cost: <strong>19</strong> <small>heuristic: 13</small></h5>
 
             <canvas id="startScoreChart" width="200" height="200"></canvas>
 
         </div>
         <div class="col-lg-4">
             <h5 class="text-center">Middle Cost <small>Mean: <span id="middleScoreMean"></span>, Std: <span id="middleScoreStd"></span> </small></h5>
-            <h5 class="text-center">Real Cost: <strong>8</strong></h5>
+            <h5 class="text-center">Real Cost: <strong>11</strong> <small>heuristic: 9</small></h5>
 
             <canvas id="middleScoreChart" width="200" height="200"></canvas>
 
         </div>
         <div class="col-lg-4">
             <h5 class="text-center">End Cost <small>Mean: <span id="endScoreMean"></span>, Std: <span id="endScoreStd"></span> </small></h5>
-            <h5 class="text-center">Real Cost: <strong>4</strong></h5>
+            <h5 class="text-center">Real Cost: <strong>6</strong> <small>heuristic: 6</small></h5>
             <canvas id="endScoreChart" width="200" height="200"></canvas>
 
         </div>
@@ -379,21 +379,21 @@
                     return d.startScore;
                 })
                 .entries(result)
-        drawBarGrah("startScore",start_data,"Start",8)
+        drawBarGrah("startScore",start_data,"Start",19)
 
         var middle_data = d3.nest() //Build a dataset for the pie chart
                 .key(function(d) {
                     return d.middleScore;
                 })
                 .entries(result)
-        drawBarGrah("middleScore",middle_data,"Middle",8)
+        drawBarGrah("middleScore",middle_data,"Middle",11)
 
         var end_data = d3.nest() //Build a dataset for the pie chart
                 .key(function(d) {
                     return d.endScore;
                 })
                 .entries(result)
-        drawBarGrah("endScore",end_data,"End",7)
+        drawBarGrah("endScore",end_data,"End",6)
 
     }
 
