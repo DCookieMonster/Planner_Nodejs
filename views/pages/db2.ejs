@@ -61,14 +61,14 @@
             <table ng-table="demo.tableParams" class="table table-condensed table-bordered table-striped">
                 <tr ng-repeat="row in $data">
                     <td data-title="'userId'" filter="{userId: 'text'}" sortable="'userId'">{{row.userId}}</td>
-                    <!--<td data-title="'Age'" filter="{age: 'number'}" sortable="'age'">{{row.age}}</td>-->
-                    <!--<td data-title="'Gender'" filter="{gender: 'text'}" sortable="'gender'">{{row.gender}}</td>-->
+                    <td data-title="'Age'" filter="{age: 'number'}" sortable="'age'">{{row.age}}</td>
+                    <td data-title="'Gender'" filter="{gender: 'text'}" sortable="'gender'">{{row.gender}}</td>
                     <td data-title="'Duration Instruction'" filter="{DurationInstruction: 'number'}" sortable="'DurationInstruction'">{{row.DurationInstruction  }}</td>
                     <!--<td data-title="'Number Of Quizs'" filter="{NumberOfTimeInQuiz: 'number'}" sortable="'NumberOfTimeInQuiz'">{{row.NumberOfTimeInQuiz}}</td>-->
                     <!--<td data-title="'Duration Quiz'" filter="{DurationQuiz: 'number'}" sortable="'DurationQuiz'">{{row.DurationQuiz}}</td>-->
-                    <td data-title="'Duration Training'" filter="{DurationTraining: 'number'}" sortable="'DurationTraining'">{{row.DurationTraining}}</td>
-                    <td data-title="'Score'" filter="{Score: 'number'}" sortable="'Score'">{{row.Score}}</td>
-                    <td data-title="'Win'" filter="{Win: 'text'}" sortable="'Win'">{{row.Win}}</td>
+                    <!--<td data-title="'Duration Training'" filter="{DurationTraining: 'number'}" sortable="'DurationTraining'">{{row.DurationTraining}}</td>-->
+                    <!--<td data-title="'Score'" filter="{Score: 'number'}" sortable="'Score'">{{row.Score}}</td>-->
+                    <!--<td data-title="'Win'" filter="{Win: 'text'}" sortable="'Win'">{{row.Win}}</td>-->
                     <!--<td data-title="'Grid Size'" filter="{GridSize: 'text'}" sortable="'GridSize'">{{row.GridSize}}</td>-->
                     <td data-title="'Calibration Cost'" filter="{calibrationScore: 'number'}" sortable="'calibrationScore'"> {{row.calibrationCost | num}}</td>
                     <td data-title="'Calibration Duration'" filter="{calibrationDuration: 'number'}" sortable="'calibrationDuration'">{{row.calibrationDuration }}</td>
@@ -125,11 +125,11 @@
             <canvas id="myChart" width="200" height="200"></canvas>
 
         </div>
-        <div class="col-lg-3">
-            <h5 class="text-center">Win/Lose Pie</h5>
-            <canvas id="winChart" width="200" height="200"></canvas>
+        <!--<div class="col-lg-3">-->
+            <!--<h5 class="text-center">Win/Lose Pie</h5>-->
+            <!--<canvas id="winChart" width="200" height="200"></canvas>-->
 
-        </div>
+        <!--</div>-->
     </div>
     <div class="row">
         <div class="col-lg-4">
@@ -320,59 +320,59 @@
 
 
 
-        var win_data = d3.nest() //Build a dataset for the pie chart
-                .key(function(d) {
-                    if (d.Win==""){
-                        return "false";
-                    }
-                    return d.Win;
-                })
-                .entries(result)
-        console.log(win_data);
-        var ctx = document.getElementById("winChart");
-        var labels=[];
-        var data=[];
-
-
-        for (i in win_data){
-            labels.push(win_data[i].key);
-            data.push(win_data[i].values.length);
-        }
-
-        var data = {
-            labels: labels,
-            datasets: [
-                {
-                    label: "Win Pie",
-                    backgroundColor:  [
-                        "#FF6384",
-                        "#4BC0C0",
-                        "#FFCE56",
-                        "#E7E9ED",
-                        "#36A2EB"
-                    ],
-                    borderColor: "rgba(255,99,132,1)",
-                    borderWidth: 1,
-                    hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                    hoverBorderColor: "rgba(255,99,132,1)",
-                    data: data
-                }
-            ]
-        };
-
-        var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        });
+//        var win_data = d3.nest() //Build a dataset for the pie chart
+//                .key(function(d) {
+//                    if (d.Win==""){
+//                        return "false";
+//                    }
+//                    return d.Win;
+//                })
+//                .entries(result)
+//        console.log(win_data);
+//        var ctx = document.getElementById("winChart");
+//        var labels=[];
+//        var data=[];
+//
+//
+//        for (i in win_data){
+//            labels.push(win_data[i].key);
+//            data.push(win_data[i].values.length);
+//        }
+//
+//        var data = {
+//            labels: labels,
+//            datasets: [
+//                {
+//                    label: "Win Pie",
+//                    backgroundColor:  [
+//                        "#FF6384",
+//                        "#4BC0C0",
+//                        "#FFCE56",
+//                        "#E7E9ED",
+//                        "#36A2EB"
+//                    ],
+//                    borderColor: "rgba(255,99,132,1)",
+//                    borderWidth: 1,
+//                    hoverBackgroundColor: "rgba(255,99,132,0.4)",
+//                    hoverBorderColor: "rgba(255,99,132,1)",
+//                    data: data
+//                }
+//            ]
+//        };
+//
+//        var myChart = new Chart(ctx, {
+//            type: 'pie',
+//            data: data,
+//            options: {
+//                scales: {
+//                    yAxes: [{
+//                        ticks: {
+//                            beginAtZero:true
+//                        }
+//                    }]
+//                }
+//            }
+//        });
 
         var start_data = d3.nest() //Build a dataset for the pie chart
                 .key(function(d) {
