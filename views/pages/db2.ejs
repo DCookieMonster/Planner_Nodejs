@@ -376,21 +376,21 @@
 
         var start_data = d3.nest() //Build a dataset for the pie chart
                 .key(function(d) {
-                    return d.startScore;
+                    return d.startCost;
                 })
                 .entries(result)
         drawBarGrah("startScore",start_data,"Start",19)
 
         var middle_data = d3.nest() //Build a dataset for the pie chart
                 .key(function(d) {
-                    return d.middleScore;
+                    return d.middleCost;
                 })
                 .entries(result)
         drawBarGrah("middleScore",middle_data,"Middle",11)
 
         var end_data = d3.nest() //Build a dataset for the pie chart
                 .key(function(d) {
-                    return d.endScore;
+                    return d.endCost;
                 })
                 .entries(result)
         drawBarGrah("endScore",end_data,"End",6)
