@@ -164,6 +164,41 @@ app.get('/test', function(req, res) {
   res.json(quotes);
 });
 
+
+app.post('/removeAll', function (req, res) {
+  // Use connect method to connect to the Server
+  if (req.body.password != "9670") {
+    res.json({result: "wrong pass"})
+    return;
+  }
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+
+      // Get the documents collection
+      var collection = db.collection('logger');
+
+
+      // Insert some users
+      collection.deleteMany({}, function (err, results) {
+        if (err) {
+          console.log(err);
+          res.json({result: "error"})
+        } else {
+          //console.log('Inserted %d documents into the "planner" collection. The documents inserted with "_id" are:', result.length, result);
+          res.json({result: results})
+
+        }
+        //Close connection
+      });
+    }
+  });
+});
+
+
 app.post('/json', function(req, res) {
   // Use connect method to connect to the Server
   MongoClient.connect(url, function (err, db) {
