@@ -114,6 +114,39 @@ app.get('/d', function(request, response) {
   });
 });
 
+app.get('/cost', function (request, response) {
+  var results = []
+  // Use connect method to connect to the Server
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+
+      // Get the documents collection
+      var collection = db.collection('logger');
+
+
+      // Insert some users
+      collection.find({}).toArray(function (err, result) {
+        if (err) {
+          console.log(err);
+        } else {
+          //console.log('Inserted %d documents into the "planner" collection. The documents inserted with "_id" are:', result.length, result);
+          results = result;
+          db.close();
+          response.render('pages/cost', {
+            results: results
+          });
+        }
+        //Close connection
+        db.close();
+      });
+    }
+  });
+});
+
 app.get('/results', function(request, response) {
   var results=[]
   // Use connect method to connect to the Server

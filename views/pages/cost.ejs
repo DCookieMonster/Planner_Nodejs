@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/header.ejs %>
+    <script src="/bower_components/Chart.js/dist/Chart.js"></script>
+    <script src="/bower_components/d3/d3.min.js"></script>
+    <script src="/bower_components/mathjs/dist/math.min.js"></script>
+
+    <script>
+
+
+        var app = angular.module("myApp", ["ngTable"]);
+        var result =  <%- JSON.stringify(results) %>;
+
+        app.controller("payCtrl", ["$scope", "$rootScope",
+            function ($scope, $rootScope) {
+                $scope.cost = 0;
+                $scope.result = result;
+                $scope.pay = function () {
+                    $scope.cost = 0;
+                    angular.forEach($scope.result, function (value, key) {
+                        console.log(key + ': ' + value);
+                        if (value.userId == $scope.userId) {
+                            var start = Math.abs(19 - value.startCost)
+                            var middle = Math.abs(11 - value.middleCost)
+                            var end = Math.abs(6 - value.endCost)
+                            var payment = 0
+                            if (start == 0) {
+                                payment += 0.2
+                            }
+                            if (start == 1) {
+                                payment += 0.15
+                            }
+                            if (start == 2) {
+                                payment += 0.1
+                            }
+                            if (middle == 0) {
+                                payment += 0.2
+                            }
+                            if (middle == 1) {
+                                payment += 0.15
+                            }
+                            if (middle == 2) {
+                                payment += 0.1
+                            }
+                            if (end == 0) {
+                                payment += 0.2
+                            }
+                            if (end == 1) {
+                                payment += 0.15
+                            }
+                            if (end == 2) {
+                                payment += 0.1
+                            }
+                            $scope.cost = payment;
+
+                        }
+                    });
+                }
+            }
+        ]);
+    </script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="payCtrl">
+
+<!--<% include ../partials/nav.ejs %>-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>User ID:</h2>
+        </div>
+        <div class="col-lg-4">
+            <input ng-model="userId" class="input-lg input-group" type="text">
+        </div>
+        <div class="col-lg-3">
+            <button ng-click="pay()" class="btn-success">What To Pay?</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-4">
+            <h1>{{cost}}</h1>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
