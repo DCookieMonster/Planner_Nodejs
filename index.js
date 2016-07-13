@@ -165,9 +165,12 @@ app.get('/test', function(req, res) {
 });
 
 
-app.post('/removeAll', function (req, res) {
+app.get('/removeAll', function (req, res) {
   // Use connect method to connect to the Server
-  if (req.body.password != "9670") {
+  //var url = require('url');
+  //var url_parts = url.parse(request.url, true);
+  //var query = url_parts.query;
+  if (req.query.password != "9670") {
     res.json({result: "wrong pass"})
     return;
   }
