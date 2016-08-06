@@ -80,6 +80,43 @@ app.get('/csv', function(request, response) {
 });
 
 
+app.get('/csv_slide_puzzle', function (request, response) {
+  var results = [];
+  var csvFile = "";
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+
+      // Get the documents collection
+      var collection = db.collection('slide_puzzle_logger');
+
+
+      // Insert some users
+      collection.find({}).toArray(function (err, result) {
+        if (err) {
+          console.log(err);
+        } else {
+          //console.log('Inserted %d documents into the "planner" collection. The documents inserted with "_id" are:', result.length, result);
+          results = result;
+          db.close();
+          json2csv({data: results}, function (err, csv) {
+            if (err) console.log(err);
+            console.log(csv);
+            response.setHeader('Content-disposition', 'attachment; filename=testing.csv');
+            response.set('Content-Type', 'text/csv');
+            response.status(200).send(csv);
+          });
+        }
+        //Close connection
+        db.close();
+      });
+    }
+  });
+
+});
 
 app.get('/d', function(request, response) {
   var results=[]
@@ -114,6 +151,41 @@ app.get('/d', function(request, response) {
   });
 });
 
+
+app.get('/slide_puzzle_data', function (request, response) {
+  var results = []
+  // Use connect method to connect to the Server
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+
+      // Get the documents collection
+      var collection = db.collection('slide_puzzle_logger');
+
+
+      // Insert some users
+      collection.find({}).toArray(function (err, result) {
+        if (err) {
+          console.log(err);
+        } else {
+          //console.log('Inserted %d documents into the "planner" collection. The documents inserted with "_id" are:', result.length, result);
+          results = result;
+          db.close();
+          response.render('pages/show_slide_puzzle', {
+            results: results
+          });
+        }
+        //Close connection
+        db.close();
+      });
+    }
+  });
+});
+
+
 app.get('/cost', function (request, response) {
   var results = []
   // Use connect method to connect to the Server
@@ -146,6 +218,43 @@ app.get('/cost', function (request, response) {
     }
   });
 });
+
+
+app.get('/slide_puzzle_payment', function (request, response) {
+  var results = [];
+  // Use connect method to connect to the Server
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+
+      // Get the documents collection
+      var collection = db.collection('slide_puzzle_logger');
+
+
+      // Insert some users
+      collection.find({}).toArray(function (err, result) {
+        if (err) {
+          console.log(err);
+        } else {
+          //console.log('Inserted %d documents into the "planner" collection. The documents inserted with "_id" are:', result.length, result);
+          results = result;
+          db.close();
+          response.render('pages/slide_puzzle_payment', {
+            results: results
+          });
+        }
+        //Close connection
+        db.close();
+      });
+    }
+  });
+});
+
+
+
 
 app.get('/results', function(request, response) {
   var results=[]
@@ -234,6 +343,43 @@ app.get('/removeAll', function (req, res) {
   });
 });
 
+app.get('/remove_all_slide_puzzle', function (req, res) {
+  // Use connect method to connect to the Server
+  //var url = require('url');
+  //var url_parts = url.parse(request.url, true);
+  //var query = url_parts.query;
+  if (req.query.password != "9670") {
+    res.json({result: "wrong pass"})
+    return;
+  }
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+
+      // Get the documents collection
+      var collection = db.collection('slide_puzzle_logger');
+
+
+      // Insert some users
+      collection.deleteMany({}, function (err, results) {
+        if (err) {
+          console.log(err);
+          res.json({result: "error"})
+        } else {
+          //console.log('Inserted %d documents into the "planner" collection. The documents inserted with "_id" are:', result.length, result);
+          res.json({result: results})
+
+        }
+        //Close connection
+      });
+    }
+  });
+});
+
+
 
 app.post('/json', function(req, res) {
   // Use connect method to connect to the Server
@@ -267,6 +413,39 @@ app.post('/json', function(req, res) {
   });
 });
 
+
+app.post('/save_slide_puzzle', function (req, res) {
+  // Use connect method to connect to the Server
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+
+      // Get the documents collection
+      var collection = db.collection('slide_puzzle_logger');
+
+      //Create some users
+      var user1 = {name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']};
+
+      // Insert some users
+      collection.insert(req.body, function (err, result) {
+        if (err) {
+          console.log(err);
+          res.json({result: "error"})
+        } else {
+          //console.log('Inserted %d documents into the "planner" collection. The documents inserted with "_id" are:', result.length, result);
+          res.json({result: "OK"})
+
+        }
+        //Close connection
+        db.close();
+      });
+    }
+  });
+});
+
 app.get('/all', function(req, res) {
   // Use connect method to connect to the Server
   MongoClient.connect(url, function (err, db) {
@@ -278,6 +457,35 @@ app.get('/all', function(req, res) {
 
       // Get the documents collection
       var collection = db.collection('logger');
+
+
+      // Insert some users
+      collection.find({}).toArray(function (err, result) {
+        if (err) {
+          console.log(err);
+        } else {
+          //console.log('Inserted %d documents into the "planner" collection. The documents inserted with "_id" are:', result.length, result);
+          res.json(result)
+        }
+        //Close connection
+        db.close();
+      });
+    }
+  });
+});
+
+
+app.get('/all_slide_puzzle', function (req, res) {
+  // Use connect method to connect to the Server
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+
+      // Get the documents collection
+      var collection = db.collection('slide_puzzle_logger');
 
 
       // Insert some users
