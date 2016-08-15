@@ -158,8 +158,8 @@
             <h5 class="text-center">Start Cost
                 <small>Mean: <span id="startScoreMean"></span>, Std: <span id="startScoreStd"></span></small>
             </h5>
-            <h5 class="text-center">Real Cost: <strong>19</strong>
-                <small>heuristic: 13</small>
+            <h5 class="text-center">Real Cost: <strong>50</strong>
+                <small>heuristic: TBD</small>
             </h5>
 
             <canvas id="startScoreChart" width="200" height="200"></canvas>
@@ -169,8 +169,8 @@
             <h5 class="text-center">Middle Cost
                 <small>Mean: <span id="middleScoreMean"></span>, Std: <span id="middleScoreStd"></span></small>
             </h5>
-            <h5 class="text-center">Real Cost: <strong>11</strong>
-                <small>heuristic: 9</small>
+            <h5 class="text-center">Real Cost: <strong>42</strong>
+                <small>heuristic: TBD</small>
             </h5>
 
             <canvas id="middleScoreChart" width="200" height="200"></canvas>
@@ -180,8 +180,8 @@
             <h5 class="text-center">End Cost
                 <small>Mean: <span id="endScoreMean"></span>, Std: <span id="endScoreStd"></span></small>
             </h5>
-            <h5 class="text-center">Real Cost: <strong>6</strong>
-                <small>heuristic: 6</small>
+            <h5 class="text-center">Real Cost: <strong>23</strong>
+                <small>heuristic: TBD</small>
             </h5>
             <canvas id="endScoreChart" width="200" height="200"></canvas>
 
@@ -412,21 +412,21 @@
                     return d.startCost;
                 })
                 .entries(result)
-        drawBarGrah("startScore", start_data, "Start", 19)
+        drawBarGrah("startScore", start_data, "Start", 50)
 
         var middle_data = d3.nest() //Build a dataset for the pie chart
                 .key(function (d) {
                     return d.middleCost;
                 })
                 .entries(result)
-        drawBarGrah("middleScore", middle_data, "Middle", 11)
+        drawBarGrah("middleScore", middle_data, "Middle", 42)
 
         var end_data = d3.nest() //Build a dataset for the pie chart
                 .key(function (d) {
                     return d.endCost;
                 })
                 .entries(result)
-        drawBarGrah("endScore", end_data, "End", 6)
+        drawBarGrah("endScore", end_data, "End", 23)
 
     }
 
